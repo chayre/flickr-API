@@ -1,0 +1,18 @@
+<div class ="container-md" align="center">
+</br>
+<%= form_with url: root_path, method: :get do |form| %>
+  <%= form.label :id, "Search for a user's pictures:" %>
+  <%= form.text_field :id, placeholder: 'ID' %>
+  <%= form.submit "Search", class:"btn btn-outline-primary"%>
+<% end %>
+</div>
+<div class ="container-md">
+</br>
+<% unless @photos.nil? %>
+  <% @photos.each do |p| %>
+    <%= link_to "http://farm#{p.farm}.staticflickr.com/#{p.server}/#{p.id}_#{p.secret}.jpg" do %>
+      <%= image_tag Flickr.url_n(p) %>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
